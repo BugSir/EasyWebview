@@ -63,10 +63,10 @@ public    class EasyWebFragment extends Fragment implements IBaseFragmentImpl {
             Toast.makeText(getContext(),"error",Toast.LENGTH_SHORT).show();
             return null;
         }
+        mModel.setBundle(mBundle);
         mMainView=mModel.getLayout(getActivity());
         mModel.setWebViewSetting();
         mModel.addJavascriptInterface();
-        mModel.setBundle(mBundle);
         mModel.callOtherMethod(getActivity());
         mModel.loadUrl(mUrl);
         return mMainView;
