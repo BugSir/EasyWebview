@@ -26,7 +26,7 @@ public  abstract   class BaseWebViewModel extends BaseModel<WebView> {
         }else if(url.contains("html")||url.contains("http"))
         {
             mWebView.loadDataWithBaseURL(null, url,"text/html" , "utf-8", null);
-        } {
+        } else{
             mWebView.loadUrl("http://" + url);
         }
     }
