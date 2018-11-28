@@ -1,5 +1,6 @@
 package com.bugsir.easywebview;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.bugsir.easywebview.base.IBaseFragmentImpl;
 import com.bugsir.easywebview.base.IBaseModelImpl;
+import com.bugsir.easywebview.base.IModelCallBack;
 
 import static com.bugsir.easywebview.base.IBaseModelImpl.INTENT_MODEL_CLASS_NAME;
 import static com.bugsir.easywebview.base.IBaseModelImpl.INTENT_WEBVIEW_URL;
@@ -20,7 +22,7 @@ import static com.bugsir.easywebview.base.IBaseModelImpl.INTENT_WEBVIEW_URL;
  *@date: 2018/11/13 14:00
  *@description: 
  */
-public    class EasyWebFragment extends Fragment implements IBaseFragmentImpl {
+public    class EasyWebFragment extends Fragment implements IBaseFragmentImpl,IModelCallBack {
     private Bundle mBundle;
     private String mUrl;
     private IBaseModelImpl mModel;
@@ -63,13 +65,24 @@ public    class EasyWebFragment extends Fragment implements IBaseFragmentImpl {
             Toast.makeText(getContext(),"error",Toast.LENGTH_SHORT).show();
             return null;
         }
-        mModel.setBundle(mBundle);
-        mMainView=mModel.getLayout(getActivity());
+        mModel.setData(mBundle);
+        mModel.setModelCallback(this);
+        mMainView=mModel.getLayout();
         mModel.setWebViewSetting();
         mModel.addJavascriptInterface();
-        mModel.callOtherMethod(getActivity());
+        mModel.callOtherMethod();
         mModel.loadUrl(mUrl);
         return mMainView;
+    }
+
+    @Override
+    public Activity getModelActivity() {
+        return getActivity();
+    }
+
+    @Override
+    public Fragment getModelFragment() {
+        return this;
     }
 
     @Override

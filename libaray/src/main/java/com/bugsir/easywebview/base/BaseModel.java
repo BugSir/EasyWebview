@@ -1,15 +1,14 @@
 package com.bugsir.easywebview.base;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
 /**
- *@author: BUG SIR
- *@date: 2018/11/13 10:54
- *@description: 基础配置类接口
+ * @author: BUG SIR
+ * @date: 2018/11/13 10:54
+ * @description: 基础配置类接口
  */
-public abstract    class BaseModel<T>  implements IBaseModelImpl {
+public abstract class BaseModel<T> implements IBaseModelImpl {
 
 
     /**
@@ -24,9 +23,33 @@ public abstract    class BaseModel<T>  implements IBaseModelImpl {
 
     protected Bundle mBundle;
 
+    public String mUrl;
+
+    public IModelCallBack callBack;
+
     @Override
-    public void setBundle(Bundle bundle) {
-        this.mBundle=bundle;
+    public void setData(Bundle bundle) {
+        this.mBundle = bundle;
+    }
+
+    @Override
+    public Bundle getData() {
+        return mBundle;
+    }
+
+    @Override
+    public String getUrl() {
+        return mUrl;
+    }
+
+    @Override
+    public void setModelCallback(IModelCallBack callback) {
+        this.callBack = callback;
+    }
+
+    @Override
+    public IModelCallBack getModelCallback() {
+        return callBack;
     }
 
     @Override
@@ -35,12 +58,17 @@ public abstract    class BaseModel<T>  implements IBaseModelImpl {
     }
 
     @Override
-    public void callOtherMethod(Activity activity) {
+    public void callOtherMethod() {
 
     }
+
+    @Override
+    public void loadUrl(String url) {
+        this.mUrl = url;
+    }
+
     //--------------------其它拓展类--------------------
-    protected  boolean isSetWebCache()
-    {
+    protected boolean isSetWebCache() {
         return false;
     }
 }

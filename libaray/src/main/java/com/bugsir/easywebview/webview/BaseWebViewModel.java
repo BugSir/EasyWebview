@@ -16,6 +16,7 @@ public  abstract   class BaseWebViewModel extends BaseModel<WebView> {
 
     @Override
     public void loadUrl(String url) {
+        super.loadUrl(url);
         if (mWebView==null)
             return;
         if (url.startsWith("http://") || url.startsWith("https://")) {
