@@ -13,12 +13,12 @@ import android.view.KeyEvent;
  */
 public    class EasyWebActivity extends AppCompatActivity   {
 
-    private EasyWebUtil mEasyUtil;
+    private EasyWebFragmentHelper mEasyUtil;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_easy_web);
-        mEasyUtil=EasyWebUtil.create(getIntent()).replace(getSupportFragmentManager(),R.id.flyt_easy);
+        mEasyUtil=EasyWebFragmentHelper.create(getIntent()).replace(getSupportFragmentManager(),R.id.flyt_easy);
     }
 
     @Override
