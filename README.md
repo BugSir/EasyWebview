@@ -89,6 +89,7 @@
  EasyWebConfig.getInstance().setWebFragmentClass(MyWebFragment.class);
  或
  EasyWebConfig.getInstance().init(MyWebViewModel.class,MyWebActivity.class,MyWebFragment.class);
+ 然后就可以照常使用了~~~~
  ```
  ### 五、Model类方法的解释以及使用
  #### 1、如何设置js回调（暂时只支持JavascriptInterface方式）
