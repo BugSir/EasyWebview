@@ -48,11 +48,11 @@ public class EasyWebFragmentHelper {
     }
 
     public static EasyWebFragmentHelper create(Intent intent) {
-        return new EasyWebFragmentHelper(intent,EasyWebFragment.class);
+        return new EasyWebFragmentHelper(intent,EasyWebConfig.getInstance().getWebFragmentClass());
     }
 
     public static EasyWebFragmentHelper create(Intent intent,Class<?extends Fragment> fragment) {
-        return new EasyWebFragmentHelper(intent,fragment);
+        return new EasyWebFragmentHelper(intent,fragment==null?EasyWebConfig.getInstance().getWebFragmentClass():fragment);
     }
 
     public EasyWebFragmentHelper replace(FragmentManager fragmentManager, int id) {

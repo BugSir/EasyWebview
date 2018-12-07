@@ -1,6 +1,7 @@
 package com.bugsir.easywebview;
 
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 
 import com.bugsir.easywebview.base.IBaseModelImpl;
 
@@ -12,6 +13,7 @@ import com.bugsir.easywebview.base.IBaseModelImpl;
 public    class EasyWebConfig   {
     private Class<?extends IBaseModelImpl> mModelClass=IBaseModelImpl.class;
     private Class<?extends Activity> mWebActivityClass=EasyWebActivity.class;
+    private Class<?extends Fragment> mWebFragmentClass=EasyWebFragment.class;
     private static EasyWebConfig mInstance;
 
     public static synchronized EasyWebConfig getInstance()
@@ -34,6 +36,24 @@ public    class EasyWebConfig   {
         this.mModelClass=mModelClass;
         this.mWebActivityClass=mWebActivityClass;
         return this;
+    }
+    public EasyWebConfig init(Class<?extends IBaseModelImpl> mModelClass,Class<?extends Activity> mWebActivityClass,Class<?extends Fragment> mWebFragmentClass)
+    {
+        this.mModelClass=mModelClass;
+        this.mWebActivityClass=mWebActivityClass;
+        this.mWebFragmentClass=mWebFragmentClass;
+        return this;
+    }
+
+    public EasyWebConfig setWebFragmentClass(Class<?extends Fragment> mWebFragmentClass)
+    {
+        this.mWebFragmentClass=mWebFragmentClass;
+        return this;
+    }
+
+    public Class<?extends Fragment> getWebFragmentClass()
+    {
+        return this.mWebFragmentClass;
     }
 
     public Class<?extends IBaseModelImpl> getModelClass()
