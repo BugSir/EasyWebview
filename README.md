@@ -86,12 +86,49 @@
  ```
  ### 四、我的fragment也是需要继承BaseFragment的怎么办？一句话Copy EasyWebFragment 以及IBaseFragmentImpl与IModelCallBack接口
  ```java
- EasyWebConfig.getInstance().setWebFragmentClass(MyWebFragment);
+ EasyWebConfig.getInstance().setWebFragmentClass(MyWebFragment.class);
  或
- EasyWebConfig.getInstance().init(MyWebViewModel.class,MyWebActivity.class,MyWebFragment);
+ EasyWebConfig.getInstance().init(MyWebViewModel.class,MyWebActivity.class,MyWebFragment.class);
  ```
  ### 五、Model类方法的解释以及使用
- 
+ #### 1、如何设置js回调（暂时只支持JavascriptInterface方式）
+ ```java
+    @Override
+    public String getJsName() {
+    //返回与web商定Js名称
+        return "CallNative";
+    }
+    //与web商定的Js回调方法类（参数什么的自行定义）
+    @JavascriptInterface
+    public void CallMethod(String call)
+    {
+    }
+ ```
+ #### 2、需要重写WebViewClient、WebChromeClient
+ ```java
+ //重写以下两个方法，实现自己的梦想
+ 	@Override
+    public void setWebClient() {
+        super.setWebClient();
+    }
+    @Override
+    public void setWebChromeClient() {
+        super.setWebClient();
+    }
+  ```
+  #### 3、是否要开启webview缓存
+  ```java
+  @Override
+    protected boolean isSetWebCache() {
+        return true;
+    }
+  ```
+  #### 4、想要改变title，设置其它内容？callOtherMethod() 在这里配合getModelCallback()你可以进一步的修改activity、fragment！
+  ```java
+  @Override
+    public void callOtherMethod() {
+    }
+  ```
  ### 六、我使用的第三方的webView怎么办？这个目前你能做的是参照BaseWebviewModel 继承 BaseModel<T> 自己拓展实现了（请原谅博主的懒）
   ```java
   对，就是以下这坨，实现它！
