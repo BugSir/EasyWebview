@@ -11,7 +11,7 @@
 	}
 项目gradle
 	dependencies {
-	        implementation 'com.github.BugSir:EasyWebview:1.0.4'
+	        implementation 'com.github.BugSir:EasyWebview:1.0.5'
 	}
 </code></pre>
 # 使用：<br/>
