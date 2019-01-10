@@ -63,14 +63,12 @@ public class EasyWebFragmentHelper {
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (mEasyWebWeak.get() != null) {
-                if (mEasyWebWeak.get() instanceof IBaseFragmentImpl) {
-                    if (((IBaseFragmentImpl) mEasyWebWeak.get()).clickBack()) {
-                        mEasyWebWeak.get().getActivity().finish();
-                        return true;
-                    }
-                }
+            if (mEasyWebWeak.get() != null&&mEasyWebWeak.get() instanceof IBaseFragmentImpl&&((IBaseFragmentImpl) mEasyWebWeak.get()).clickBack()) {
+                //可关闭界面，事件交由系统决定
                 return false;
+            }else
+            {//不可关闭界面，事件消耗掉
+                return true;
             }
         }
         return false;
